@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Questionnaire Details</title>
+</head>
+<body>
+<h3>Questionnaire Details</h3>
+<table>
+    <thead>
+    <th>
+        eq_id
+    </th>
+    <th>
+        form_type
+    </th>
+    <th>
+        created_by
+    </th>
+    <th>
+        created_at
+    </th>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ questionnaire.eq_id }}</td>
+        <td>{{ questionnaire.form_type }}</td>
+        <td>{{ questionnaire.created_by }}</td>
+        <td>{{ questionnaire.created_at }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Versions</h3>
+
+<a href="{{ url_for('create_version', questionnaire_name=questionnaire.eq_id) }}">Add version</a>
+
+{% if questionnaire.versions %}
+<table>
+    <thead>
+    <th>
+        id
+    </th>
+    <th>
+        form_type
+    </th>
+    <th>
+        created_by
+    </th>
+    <th>
+        lang
+    </th>
+    <th>
+        variant
+    </th>
+    <th>
+        description
+    </th>
+    <th>
+        data
+    </th>
+    </thead>
+    <tbody>
+
+    {% for version in questionnaire.versions %}
+
+    <tr>
+        <td>{{ version.id }}</td>
+        <td>{{ version.form_type }}</td>
+        <td>{{ version.created_by }}</td>
+        <td>{{ version.lang }}</td>
+        <td>{{ version.variant }}</td>
+        <td>{{ version.description }}</td>
+        <td>Download</td>
+    </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% if not questionnaire.versions %}
+No versions to display
+{% endif %}
+</body>
+</html>
