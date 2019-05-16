@@ -1,4 +1,4 @@
-#eq-register
+# eq-register
 
 An immutable store of electronic questionnaire schemas.
 
